@@ -1,5 +1,6 @@
 package utility;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
@@ -15,7 +16,6 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
 public class Hook {
-	
 	private static String DEVICE_ID = "S8W8QCTCAA9SSCMV";
 	private static WebDriver driver;
 	
@@ -39,7 +39,7 @@ public class Hook {
 		cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "OPPO F11");
 		cap.setCapability(MobileCapabilityType.UDID, DEVICE_ID);
-		cap.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());s
+		cap.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
 		
 		driver = new AndroidDriver<WebElement>(new URL("http://0.0.0.0:4723/wd/hub"), cap);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -47,7 +47,7 @@ public class Hook {
 	
 	@After
 	public void tearDown(){
-		driver.quit();
+//		driver.quit();
 	}
 	
 	public static WebDriver getDriver(){
