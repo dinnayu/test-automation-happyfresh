@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import common.CommonUtils;
+import common.Constants;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.appium.java_client.MobileElement;
@@ -50,13 +51,13 @@ public class SortProducListScenario {
 		MobileElement element = new CommonUtils().getElementById(driver, "com.happyfresh.android:id/search_src_text");
 		if (element != null) {
 			element.click();
-			boolean isLocationFilled = new CommonUtils().isFilledTextfield(element, "Menara Palma");
+			boolean isLocationFilled = new CommonUtils().isFilledTextfield(element, Constants.LOCATION_TEST_DATA);
 			if (!isLocationFilled) {
-				System.err.println("Please fill the search location textfield with 'Menara Palma' manually within 10 seconds");
+				System.err.println("Please fill the search location textfield with " + Constants.LOCATION_TEST_DATA + " manually within 10 seconds");
 				Thread.sleep(4000);
 			}
 		} else {
-			System.err.println("Please fill the search location textfield with 'Menara Palma' manually within 10 seconds");
+			System.err.println("Please fill the search location textfield with " + Constants.LOCATION_TEST_DATA + " manually within 10 seconds");
 			Thread.sleep(4000);
 		}
 	}
