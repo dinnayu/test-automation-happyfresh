@@ -50,7 +50,11 @@ public class SortProducListScenario {
 		MobileElement element = new CommonUtils().getElementById(driver, "com.happyfresh.android:id/search_src_text");
 		if (element != null) {
 			element.click();
-			element.sendKeys("Menara Palma");
+			boolean isLocationFilled = new CommonUtils().isFilledTextfield(element, "Menara Palma");
+			if (!isLocationFilled) {
+				System.err.println("Please fill the search location textfield with 'Menara Palma' manually within 10 seconds");
+				Thread.sleep(4000);
+			}
 		} else {
 			System.err.println("Please fill the search location textfield with 'Menara Palma' manually within 10 seconds");
 			Thread.sleep(4000);
@@ -63,6 +67,9 @@ public class SortProducListScenario {
 		MobileElement element = new CommonUtils().getElementById(driver, "com.happyfresh.android:id/component_suggestion_address");
 		if (element != null) {
 			Assert.assertTrue(element.isDisplayed());
+			
+			List<MobileElement> list = driver.findElements(By.id("com.happyfresh.android:id/ui_view_suggestion_address_container"));
+			list.get(0).click();
 		} else {
 			System.err.println("Please select one of location");
 			Thread.sleep(1000);
