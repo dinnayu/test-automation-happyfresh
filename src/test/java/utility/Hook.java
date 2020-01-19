@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import common.Constants;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import io.appium.java_client.MobileElement;
@@ -17,7 +18,6 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
 public class Hook {
-	private static String DEVICE_ID = "S8W8QCTCAA9SSCMV";
 	private static AndroidDriver<MobileElement> driver;
 	
 	@Before("@appium")
@@ -30,8 +30,8 @@ public class Hook {
 		// Configuration to invoke Appium
 		DesiredCapabilities cap = new DesiredCapabilities();
 		cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "OPPO F11");
-		cap.setCapability(MobileCapabilityType.UDID, DEVICE_ID);
+		cap.setCapability(MobileCapabilityType.DEVICE_NAME, Constants.DEVICE_NAME);
+		cap.setCapability(MobileCapabilityType.UDID, Constants.DEVICE_UDID);
 		cap.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
 		
 		driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), cap);
@@ -40,7 +40,7 @@ public class Hook {
 	
 	@After
 	public void tearDown(){
-		driver.removeApp("com.example.AppName");
+		driver.removeApp("com.happyfresh.android");
 	}
 	
 	public static AndroidDriver<MobileElement> getDriver(){

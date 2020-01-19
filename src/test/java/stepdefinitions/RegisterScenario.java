@@ -22,14 +22,14 @@ public class RegisterScenario {
 	
 	@Given("^Launch the application$")
 	public void launch_the_application() throws Throwable {
-		Thread.sleep(4000);
+		Thread.sleep(10000);
 		driver.findElement(By.xpath("//*[@text='Indonesian']")).click();
 		driver.findElement(By.id("com.happyfresh.android:id/ui_view_skip_on_boarding_text_view")).click();
 	}
 	
 	@Then("^Verify Home Screen$")
 	public void verify_Home_Screen() throws Throwable {
-		Thread.sleep(10000);
+		Thread.sleep(1000);
 	    Assert.assertTrue(driver.findElement(By.className("android.widget.ImageButton")).isDisplayed());
 	    Assert.assertTrue(driver.findElement(By.id("com.happyfresh.android:id/component_newsfeed_display_on_home_screen")).isDisplayed());
 	    Assert.assertTrue(driver.findElement(By.id("com.happyfresh.android:id/component_address_info")).isDisplayed());
