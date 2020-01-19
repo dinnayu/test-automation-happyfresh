@@ -79,6 +79,7 @@ public class SortProducListScenario {
 	@Then("^Verify Confirmation overlay is diplayed$")
 	public void verify_Confirmation_overlay_is_diplayed() throws Throwable {
 		System.out.println("Verify confirmation overlay ....");
+		Thread.sleep(4000);
 		MobileElement element = new CommonUtils().getElementById(driver, "com.happyfresh.android:id/component_popup_dialog");
 		if (element != null) {
 			Assert.assertTrue(element.isDisplayed());
@@ -118,6 +119,7 @@ public class SortProducListScenario {
 	
 	@Then("^Dismiss poster$")
 	public void dismiss_poster() throws Throwable {
+		Thread.sleep(4000);
 		MobileElement element = new CommonUtils().getElementById(driver, "com.happyfresh.android:id/com_appboy_inappmessage_full_button_one");
 		if (element != null) {
 			element.click();

@@ -48,7 +48,11 @@ public class RegisterScenario {
 
 	@Then("^Verify User Info menu with chevron is displayed$")
 	public void verify_User_Info_menu_with_chevron_is_displayed() throws Throwable {
-	    Assert.assertTrue(driver.findElement(By.id("com.happyfresh.android:id/component_drawer_user_info")).isDisplayed());
+		Thread.sleep(1000);
+		MobileElement element = new CommonUtils().getElementById(driver, "com.happyfresh.android:id/component_drawer_user_info");
+		if (element != null) {
+			Assert.assertTrue(element.isDisplayed());
+		}
 	}
 	
 	@When("^Tap on User Info menu with chevron$")
