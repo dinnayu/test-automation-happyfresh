@@ -16,4 +16,20 @@ public class CommonUtils {
 			return null;
 		}
 	}
+	
+	public boolean isFilledTextfield(MobileElement element, String text) {
+		boolean isFilledTextField = false;
+		
+		if (!text.isEmpty()) {
+			try {
+				element.sendKeys(text);
+				isFilledTextField = true;
+			}
+			catch (Throwable t) {
+				System.out.println(t.getMessage());
+			}
+		}
+		
+		return isFilledTextField;
+	}
 }

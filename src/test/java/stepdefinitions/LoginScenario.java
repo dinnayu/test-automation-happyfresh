@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import common.CommonUtils;
+import common.Constants;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.appium.java_client.MobileElement;
@@ -40,14 +41,29 @@ public class LoginScenario {
 
 	@Then("^Fill all mandatory field in Login screen with valid credentials$")
 	public void fill_all_mandatory_field_in_Login_screen_with_valid_credentials() throws Throwable {
-		System.err.println(" Please fill the email: test.111@mail.com manually within 10 seconds");
-		
-		Thread.sleep(10000);
+		MobileElement emailTextField = new CommonUtils().getElementById(driver, "com.happyfresh.android:id/email");
 		MobileElement passwordTextField = new CommonUtils().getElementById(driver, "com.happyfresh.android:id/password");
-		if (passwordTextField != null) {
-			passwordTextField.click();
+		
+		if (emailTextField != null) {
+			emailTextField.clear();
 			Thread.sleep(1000);
-			passwordTextField.sendKeys("Welcome123");
+			boolean isEmailFilled = new CommonUtils().isFilledTextfield(emailTextField, Constants.REGISTER_EMAIL);
+			
+			if (!isEmailFilled) {
+				System.err.println("Please fill the email field manually within 10 seconds");
+				Thread.sleep(10000);
+			}
+		}
+		
+		if (passwordTextField != null) {
+			passwordTextField.clear();
+			Thread.sleep(1000);
+			boolean isPasswordFilled = new CommonUtils().isFilledTextfield(passwordTextField, Constants.REGISTER_PASSWORD);
+			
+			if (!isPasswordFilled) {
+				System.err.println("Please fill the password field manually within 10 seconds");
+				Thread.sleep(10000);
+			}
 		}
 		
 	    Assert.assertTrue(driver.findElement(By.id("com.happyfresh.android:id/login")).isEnabled());

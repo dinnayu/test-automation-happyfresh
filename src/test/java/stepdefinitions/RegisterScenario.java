@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import common.CommonUtils;
+import common.Constants;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -76,10 +78,52 @@ public class RegisterScenario {
 	@Then("^Fill all mandatory field with valid credentials$")
 	public void fill_all_mandatory_field() throws Throwable {
 		Thread.sleep(10000);
-		driver.findElement(By.id("com.happyfresh.android:id/first_name")).sendKeys("Test");
-		driver.findElement(By.id("com.happyfresh.android:id/last_name")).sendKeys("Automation");;
-		driver.findElement(By.id("com.happyfresh.android:id/edittext_email")).sendKeys("test.automation@mail.com");
-		driver.findElement(By.id("com.happyfresh.android:id/edittext_password")).sendKeys("Welcome123");
+		MobileElement firstName = new CommonUtils().getElementById(driver, "com.happyfresh.android:id/first_name");
+		MobileElement lastName = new CommonUtils().getElementById(driver, "com.happyfresh.android:id/last_name");
+		MobileElement email = new CommonUtils().getElementById(driver, "com.happyfresh.android:id/edittext_email");
+		MobileElement password = new CommonUtils().getElementById(driver, "com.happyfresh.android:id/edittext_password");
+		
+		if (firstName != null) {
+			firstName.clear();
+			Thread.sleep(1000);
+			
+			boolean isFirstNameFilled = new CommonUtils().isFilledTextfield(firstName, Constants.REGISTER_FIRST_NAME);
+			if (!isFirstNameFilled) {
+				System.err.println("Please fill the first name text field manally within 10 seconds");
+				Thread.sleep(10000);
+			}
+			
+		}
+		
+		if (lastName != null) {
+			lastName.clear();
+			Thread.sleep(1000);
+			boolean isLastNameFilled = new CommonUtils().isFilledTextfield(lastName, Constants.REGISTER_LAST_NAME);
+			if (!isLastNameFilled) {
+				System.err.println("Please fill the last name text field manally within 10 seconds");
+				Thread.sleep(10000);
+			}
+		}
+		
+		if (email != null) {
+			email.clear();
+			Thread.sleep(1000);
+			boolean isEmailFilled = new CommonUtils().isFilledTextfield(email, Constants.REGISTER_EMAIL);
+			if (!isEmailFilled) {
+				System.err.println("Please fill the email text field manally within 10 seconds");
+				Thread.sleep(10000);
+			}
+		}
+		
+		if (password != null) {
+			password.clear();
+			Thread.sleep(1000);
+			boolean isPasswordFilled = new CommonUtils().isFilledTextfield(password, Constants.REGISTER_PASSWORD);
+			if (!isPasswordFilled) {
+				System.err.println("Please fill the password text field manally within 10 seconds");
+				Thread.sleep(10000);
+			}
+		}
 		
 		Assert.assertTrue(driver.findElement(By.id("com.happyfresh.android:id/sign_up")).isEnabled());
 	}
