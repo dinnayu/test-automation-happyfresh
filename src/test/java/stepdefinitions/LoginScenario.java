@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import common.CommonUtils;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.appium.java_client.MobileElement;
@@ -39,13 +40,15 @@ public class LoginScenario {
 
 	@Then("^Fill all mandatory field in Login screen with valid credentials$")
 	public void fill_all_mandatory_field_in_Login_screen_with_valid_credentials() throws Throwable {
-		System.out.println(" Please fill the email: test.111@mail.com manually within 10 seconds");
+		System.err.println(" Please fill the email: test.111@mail.com manually within 10 seconds");
 		
 		Thread.sleep(10000);
-		MobileElement passwordTextField = driver.findElement(By.id("com.happyfresh.android:id/password"));
-		passwordTextField.click();
-		Thread.sleep(1000);
-		passwordTextField.sendKeys("Welcome123");
+		MobileElement passwordTextField = new CommonUtils().getElementById(driver, "com.happyfresh.android:id/password");
+		if (passwordTextField != null) {
+			passwordTextField.click();
+			Thread.sleep(1000);
+			passwordTextField.sendKeys("Welcome123");
+		}
 		
 	    Assert.assertTrue(driver.findElement(By.id("com.happyfresh.android:id/login")).isEnabled());
 	    
