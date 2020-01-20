@@ -58,7 +58,12 @@ public class RegisterScenario {
 	@When("^Tap on User Info menu with chevron$")
 	public void tap_on_user_info_Menu() throws Throwable {
 		Thread.sleep(4000);
-		driver.findElement(By.id("com.happyfresh.android:id/component_drawer_user_info")).click();
+		MobileElement element = new CommonUtils().getElementById(driver, "com.happyfresh.android:id/component_drawer_user_info");
+		if (element != null) {
+			element.click();
+		} else {
+			System.err.println("Please tap hamburger manually...");
+		}
 	}
 	
 	@Then("^Verify Register button is displayed$")

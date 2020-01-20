@@ -55,6 +55,7 @@ public class LoginScenario {
 			}
 		}
 		
+		Thread.sleep(1000);
 		if (passwordTextField != null) {
 			passwordTextField.clear();
 			Thread.sleep(1000);
@@ -77,5 +78,14 @@ public class LoginScenario {
 
 	@Then("^Verify that user success to login with registered account$")
 	public void verify_that_user_success_to_login_with_registered_account() throws Throwable {
+		Thread.sleep(4000);
+		try {
+			MobileElement element = driver.findElement(By.xpath("//android.widget.ImageButton[@content-desc=\"Navigasi naik\"]"));
+			element.click();
+		}
+		catch (Throwable t) {
+			System.out.println(" >>> ERROR >>> " + t.getMessage());
+			System.err.println("Please go to Home Screen manually");
+		}
 	}
 }

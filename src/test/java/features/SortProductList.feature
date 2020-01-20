@@ -36,7 +36,8 @@ Feature: Sort Product List Feature
     Then Verify Login screen
     Then Fill all mandatory field in Login screen with valid credentials
     When Tap on Sign In button
-    Then Verify Select Location button is displayed
+    Then Verify that user success to login with registered account
+    And Verify Select Location button is displayed
     When Tap on Select Location button and allow permission
     Then Verify Location text field is diplayed
     When Fill the location text field
